@@ -1,0 +1,12 @@
+let express = require('express')
+let app = express()
+// let serve =require('http').createServer(app)
+// serve.listen(8080)
+let index = require('./routes/index.js')
+let user = require('./routes/user.js')
+let article = require('./routes/article.js')
+
+app.use('/', index)
+app.use('/user', user)
+app.use('/article', article)
+app.listen(8080)
