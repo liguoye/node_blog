@@ -51,6 +51,11 @@
                             <%}%>
                 </ul>
                 <%if(user){%>
+                    <form class="d-flex" action="/" role="search" style="padding-right:10px">
+                        <input class="form-control me-2" value="<%=keyword%>" type="search" placeholder="请输入关键字"
+                            name="keyword">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
                     <ul class="navbar-nav">
                         <li class="nav-item"><a href="">
                                 <img class="avatar_img" src="<%=user.avatar%>" alt="">
