@@ -10,7 +10,7 @@
     </title>
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />
     <style>
-        img {
+        .avatar_img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -53,7 +53,7 @@
                 <%if(user){%>
                     <ul class="navbar-nav">
                         <li class="nav-item"><a href="">
-                                <img src="<%=user.avatar%>" alt="">
+                                <img class="avatar_img" src="<%=user.avatar%>" alt="">
                                 <%=user.username%>
                             </a></li>
                     </ul>
@@ -61,7 +61,7 @@
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container" style="padding-top:20px">
         <%if(success){%>
             <div class="alert alert-success">
                 <%=success%>

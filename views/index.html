@@ -1,4 +1,26 @@
-
 <%- include('include/header.html'); -%>
-    首页22222
-<%- include('include/footer.html'); -%>
+    <%articles.forEach(function(article){%>
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-2" style="align-items: center;justify-content: center;display: flex;">
+                    <img src="<%=article.user.avatar%>" class="img-fluid rounded-start" alt=""
+                        style="border-radius: 5px;width:98%">
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/article/detail/<%=article._id%>">
+                                <%=article.title%>
+                            </a>
+                        </h5>
+                        <p class="card-text">
+                            <%=article.content%>
+                        </p>
+                        <p class="card-text"><small class="text-muted">发表时间: <%=article.createAt.toLocaleString()%> |
+                                    作者: <%=article.user.username%></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%})%>
+            <%- include('include/footer.html'); -%>
