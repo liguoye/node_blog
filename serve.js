@@ -1,12 +1,37 @@
 let express = require('express')
+let path = require('path')
+let bodyParser = require('body-parser')
 let app = express()
-// let serve =require('http').createServer(app)
-// serve.listen(8080)
+
+//解析客户端提交过来的请求体  并转成程序赋给req.body
+app.use(bodyParser.urlencoded({ extended: true }))
+//设置模板引擎 html
+app.set('view engine', 'html')
+//指定模板的存放根目录
+app.set('views', path.resolve('views'))
+app.engine('html', require('ejs').__express)
+//设置静态文件目录
+app.use(express.static(path.resolve('node_modules')))
+
+//写在路由前面  在使用了此回话中间件之后,会在请求对象上增加req session属性
+let session = require('express-session')
+app.use(session({
+    resave: true,//每次客户端请求服务器都会报错session 
+    secret: 'zfpx',//用来加密cookie
+    saveUninitialized: true,//保存未初始化的session
+}))
+
+app.use(function (req, res, next) {
+    //真正渲染模板的是res.locals
+    res.locals.user = req.session.user
+    next()
+})
 let index = require('./routes/index.js')
 let user = require('./routes/user.js')
 let article = require('./routes/article.js')
-
 app.use('/', index)
 app.use('/user', user)
 app.use('/article', article)
 app.listen(8080)
+// let serve =require('http').createServer(app)
+// serve.listen(8080)

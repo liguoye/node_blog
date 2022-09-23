@@ -1,0 +1,22 @@
+<%- include('../include/header.html'); -%>
+    <div class="row justify-content-md-center">
+        <div class="col-sm-6 col-sm-offet-3">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label">用户名</label>
+                    <input type="text" required class="form-control" id="username" name="username"
+                        aria-describedby="用户名">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">密码</label>
+                    <input type="password" required class="form-control" id="password" name="password">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">邮箱</label>
+                    <input type="email" required class="form-control" id="email" aria-describedby="邮箱" name="email">
+                </div>
+                <button type="submit" class="btn btn-primary">注册</button>
+            </form>
+        </div>
+    </div>
+    <%- include('../include/footer.html'); -%>
