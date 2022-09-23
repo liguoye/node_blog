@@ -15,6 +15,8 @@ app.use(express.static(path.resolve('public')))
 
 //写在路由前面  在使用了此回话中间件之后,会在请求对象上增加req session属性
 let session = require('express-session')
+let MongoStore = require('connect-mongo')
+let { baseUrl } = require('./config')
 app.use(session({
     resave: true,//每次客户端请求服务器都会报错session 
     secret: 'zfpx',//用来加密cookie
@@ -22,6 +24,8 @@ app.use(session({
     cookie: {
         maxAge: 3600 * 1000,//指定cookie的过期时间
     },
+    //服务器存储本地信息
+    store: MongoStore.create({ mongoUrl: baseUrl })
 }))
 
 //消息提示中间件  flash-闪光一闪而过  
@@ -32,6 +36,7 @@ app.use(flash())
 app.use(function (req, res, next) {
     //真正渲染模板的是res.locals
     res.locals.user = req.session.user
+    res.locals.keyword = ''
     res.locals.success = req.flash('success').toString()
     res.locals.error = req.flash('error').toString()
     next()

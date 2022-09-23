@@ -73,7 +73,6 @@ router.post('/signin', checkNotLogin, function (req, res) {
  * **/
 //single 当表单里只有一个上传字段的话 avatar是上传文件字段的name属性 req.file req.body
 router.post('/signup', checkNotLogin, uploads.single('avatar'), function (req, res) {
-    console.log('req', req.file, req.body)
     let user = req.body //请求体对象 username password email
     user.avatar = `/uploads/${req.file.filename}`
     User.create(user, function (err, doc) {//_id  
