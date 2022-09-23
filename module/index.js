@@ -5,7 +5,8 @@ mongoose.connect('mongodb://127.0.0.1/node_pro')
 let UserSchema = new mongoose.Schema({
     username: String,
     password: String,
-    email: String
+    email: String,
+    avatar: String,
 })
 //定义用户模型
 let User = mongoose.model('User', UserSchema)
